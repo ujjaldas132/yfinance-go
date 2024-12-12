@@ -1,4 +1,4 @@
-package yfinace
+package yfinance
 
 import (
 	"bytes"
