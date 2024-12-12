@@ -1,4 +1,4 @@
-package main
+package yfinace
 
 import (
 	"github.com/ujjaldas132/yfinance-go/models/yfModels"
