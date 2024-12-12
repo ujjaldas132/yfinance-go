@@ -21,12 +21,12 @@ var (
 
 type YFinance struct {
 	// fullTickerSymbol is the full ticker symbol for the stock, e.g. "BSE.NS"
-	fullTickerSymbol string
+	FullTickerSymbol string
 }
 
 // Get Stock price history data
 func (yf YFinance) GetHistory(dateRange string, interval string) ([]models.HistoryData, error) {
-	stock, err := getStock(yf.fullTickerSymbol, dateRange, interval)
+	stock, err := getStock(yf.FullTickerSymbol, dateRange, interval)
 	if err != nil {
 		fmt.Println(err)
 	}
