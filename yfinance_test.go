@@ -9,7 +9,7 @@ import (
 func TestGetStock(t *testing.T) {
 
 	symbol := "bse.ns"
-	yf := YFinance{fullTickerSymbol: symbol}
+	yf := YFinance{FullTickerSymbol: symbol}
 
 	stock, err := yf.GetHistory(yfModels.RangeFiveDays, yfModels.IntervalOneDay)
 	if err != nil {
