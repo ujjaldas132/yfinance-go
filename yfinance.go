@@ -43,7 +43,13 @@ func (yf YFinance) GetHistory(dateRange string, interval string) ([]models.Histo
 			Low:      stock.Indicators.Quote[0].Low[i],
 			Close:    stock.Indicators.Quote[0].Close[i],
 			Volume:   stock.Indicators.Quote[0].Volume[i],
-			AdjClose: stock.Indicators.Adjclose[0].Adjclose[i],
+			AdjClose: func() float64 {
+				if len(stock.Indicators.Adjclose) > 0 && len(stock.Indicators.Adjclose[0].Adjclose) > i {
+					return stock.Indicators.Adjclose[0].Adjclose[i]
+				} else {
+					return 0
+				}
+			}(),
 		})
 	}
 	return response, nil
@@ -97,8 +103,7 @@ func doRequest(symbol, dateRange, interval string) (*http.Response, error) {
 	if err := tmpl.Execute(&url, p); err != nil {
 		return nil, err
 	}
-
-	debug(url.String())
+	
 	return http.Get(url.String())
 }
 
